@@ -15,19 +15,19 @@ data MyState = Null | S Cell [Cell] String MyState deriving (Show,Eq)
 -- OR it will go far from the nearest mine, Null should be returned.
 up:: MyState -> MyState
 up ( S (x,y) mines string myState ) = if x<=0 || elem (x,y) mines || (checkGoFar "up" (x,y) mines) then Null else 
-																								(S (x-1,y) mines "up" (S (x,y) mines string myState))
+													(S (x-1,y) mines "up" (S (x,y) mines string myState))
 -- Same goes here but DOWN
 down:: MyState -> MyState
 down ( S (x,y) mines string myState ) = if x>=10 || elem (x,y) mines || (checkGoFar "down" (x,y) mines) then Null else 
-																								(S (x+1,y) mines "down" (S (x,y) mines string myState))
+													(S (x+1,y) mines "down" (S (x,y) mines string myState))
 -- Same goes here but LEFT
 left:: MyState -> MyState
 left ( S (x,y) mines string myState ) = if y<=0 || elem (x,y) mines || (checkGoFar "left" (x,y) mines) then Null else 
-																								(S (x,y-1) mines "left" (S (x,y) mines string myState))
+													(S (x,y-1) mines "left" (S (x,y) mines string myState))
 -- Same goes here but RIGHT
 right:: MyState -> MyState
 right ( S (x,y) mines string myState ) = if y>=10 || elem (x,y) mines || (checkGoFar "right" (x,y) mines) then Null else 
-																							(S (x,y+1) mines "right" (S (x,y) mines string myState))
+													(S (x,y+1) mines "right" (S (x,y) mines string myState))
 
 -- The function takes as input a state and returns the state resulting from collecting a mine which we stand on
 -- from the input state.
